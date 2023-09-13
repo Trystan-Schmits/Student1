@@ -7,31 +7,33 @@ type: hacks
 courses: {'csse': {'week': 2}, 'csp': {'week': 0}, 'csa': {'week': 0}}
 categories: ['C4.1']
 ---
-<p>
-    <button onclick="run(7)"> 7  </button>
-    <button onclick="run(8)"> 8  </button>
-    <button onclick="run(9)"> 9  </button>
-    <button onclick="modif(3)"> x </button> 
-</p>
-<p>
-    <button onclick="run(4)"> 4  </button>
-    <button onclick="run(5)"> 5  </button>
-    <button onclick="run(6)"> 6  </button>
-    <button onclick="modif(2)"> - </button>
-</p>
-<p>
-    <button onclick="run(1)"> 1  </button>
-    <button onclick="run(2)"> 2  </button>
-    <button onclick="run(3)"> 3  </button>
-    <button onclick="modif(1)"> + </button>
-</p>
-<p> 
-    <button onclick="run(0)"> 0  </button>
-    <button onclick="modif(4)"> ÷ </button>
-</p>
-<p>
-    <button onclick="equal()"> = </button>
-</p>
+<div>
+    <p>
+        <button onclick="run(7)"> 7  </button>
+        <button onclick="run(8)"> 8  </button>
+        <button onclick="run(9)"> 9  </button>
+        <button onclick="modif(3)"> x </button> 
+    </p>
+    <p>
+        <button onclick="run(4)"> 4  </button>
+        <button onclick="run(5)"> 5  </button>
+        <button onclick="run(6)"> 6  </button>
+        <button onclick="modif(2)"> - </button>
+    </p>
+    <p>
+        <button onclick="run(1)"> 1  </button>
+        <button onclick="run(2)"> 2  </button>
+        <button onclick="run(3)"> 3  </button>
+        <button onclick="modif(1)"> + </button>
+    </p>
+    <p> 
+        <button onclick="run(0)"> 0  </button>
+        <button onclick="modif(4)"> ÷ </button>
+    </p>
+    <p>
+        <button onclick="equal()"> = </button>
+    </p>
+</div>
 
 <p id="text">0</p>
 
@@ -79,12 +81,12 @@ categories: ['C4.1']
             }
         }
 
-        document.getElementById("text").innerText = "="+tempRun;
-        runningTotal = tempRun;
+        document.getElementById("text").innerText = "="+tempRun; //output
+
+        runningTotal = tempRun; //set output state
         state = 1;
         funcs.length = 0;
         peices.length = 0;
-
     }
 
     function modif(a) {
