@@ -7,35 +7,57 @@ type: hacks
 courses: {'csse': {'week': 2}, 'csp': {'week': 0}, 'csa': {'week': 0}}
 categories: ['C4.1']
 ---
-<div>
+<style>
+    .back {
+      border: 1px outset black;
+      background-color: silver;
+      text-align: center;
+    }
+    .button {
+      border: 1px outset black;
+      border-radius : 5px;
+      background-color: grey;
+      text-align: center;
+      width : 20%;
+      height : 20%
+    }
+    .output {
+      border: 1px outset black;
+      border-radius : 5px;
+      background-color: white;
+      color : black;
+      width : 100%;
+      height : 20%;
+    }
+</style>
+<div class="back" width="300" height="800">
     <p>
-        <button onclick="run(7)"> 7  </button>
-        <button onclick="run(8)"> 8  </button>
-        <button onclick="run(9)"> 9  </button>
-        <button onclick="modif(3)"> x </button> 
+        <button onclick="run(7)" class="button"> 7  </button>
+        <button onclick="run(8)" class="button"> 8  </button>
+        <button onclick="run(9)" class="button"> 9  </button>
+        <button onclick="modif(3)" class="button"> x </button> 
     </p>
     <p>
-        <button onclick="run(4)"> 4  </button>
-        <button onclick="run(5)"> 5  </button>
-        <button onclick="run(6)"> 6  </button>
-        <button onclick="modif(2)"> - </button>
+        <button onclick="run(4)" class="button"> 4  </button>
+        <button onclick="run(5)" class="button"> 5  </button>
+        <button onclick="run(6)" class="button"> 6  </button>
+        <button onclick="modif(2)" class="button"> - </button>
     </p>
     <p>
-        <button onclick="run(1)"> 1  </button>
-        <button onclick="run(2)"> 2  </button>
-        <button onclick="run(3)"> 3  </button>
-        <button onclick="modif(1)"> + </button>
+        <button onclick="run(1)" class="button"> 1  </button>
+        <button onclick="run(2)" class="button"> 2  </button>
+        <button onclick="run(3)" class="button"> 3  </button>
+        <button onclick="modif(1)" class="button"> + </button>
     </p>
     <p> 
-        <button onclick="run(0)"> 0  </button>
-        <button onclick="modif(4)"> ÷ </button>
+        <button onclick="run(0)" class="button"> 0  </button>
+        <button onclick="modif(4)" class="button"> ÷ </button>
     </p>
     <p>
-        <button onclick="equal()"> = </button>
+        <button onclick="equal()" class="button"> = </button>
     </p>
+    <p id="text" class="output">0</p>
 </div>
-
-<p id="text">0</p>
 
 <script> 
     let state = 0;
@@ -115,7 +137,7 @@ categories: ['C4.1']
     }
 
     function run(a) {
-        if (state==1){
+        if (state==1){ // if a number is selected first, then ignore previous answer
             runningTotal = 0;
             state = 0;
         }
