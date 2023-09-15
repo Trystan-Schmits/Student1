@@ -112,6 +112,7 @@ categories: ['C4.1']
     </p>
     <p id="text" class="output">0</p>
 </div>
+
 <table class="dictionary">
     <tr id="dict">
         <th> Number </th>
