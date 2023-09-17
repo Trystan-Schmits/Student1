@@ -45,7 +45,7 @@ categories: ['C4.1']
             document.getElementById("text").innerText = "Too high!"
             count += 1;
         }
-        elseif (guess < num) {
+        else if (guess < num) {
             document.getElementById("text").innerText = "Too low!"
             count +=1;
         }
