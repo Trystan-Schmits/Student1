@@ -41,11 +41,11 @@ categories: ['C4.1']
             document.getElementById("hide").setAttribute("class", "hide");
             count = 0;
         } 
-        if (guess > num) {
+        else if (guess > num) {
             document.getElementById("text").innerText = "Too high!"
             count += 1;
         }
-        if (guess < num) {
+        elseif (guess < num) {
             document.getElementById("text").innerText = "Too low!"
             count +=1;
         }
