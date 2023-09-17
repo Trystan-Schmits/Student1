@@ -77,11 +77,11 @@ categories: ['C4.1']
                 document.getElementById("text").innerText = String(turn).replace("true","Player 1 ").replace("false","Player 2 ")+"wins!";
                 return;
             }
-            for (let i = 1; i < 10; i++) {
-                if (typeof board[i] == "undefined"){return;};
-            }
-            document.getElementById("show").setAttribute("class", "show");
-            document.getElementById("hide").setAttribute("class", "hide");
-            document.getElementById("text").innerText = "Tie";
+        for (let i = 1; i < 10; i++) {
+            if (typeof board[i] == "undefined"){return;};
+        }
+        document.getElementById("show").setAttribute("class", "show");
+        document.getElementById("hide").setAttribute("class", "hide");
+        document.getElementById("text").innerText = "Tie";
     }
 </script>
