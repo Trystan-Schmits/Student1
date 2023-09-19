@@ -1,8 +1,8 @@
 ---
 comments: False
 layout: post
-title: Tic Tac Toe
-description: Simple Tic Tac Toe game
+title: Animation Frames
+description: Simple show of requestAnimationFrame()
 type: hacks
 courses: {'csse': {'week': 4}, 'csp': {'week': 0}, 'csa': {'week': 0}}
 categories: ['C4.1']

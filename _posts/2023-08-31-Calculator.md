@@ -214,7 +214,7 @@ categories: ['C4.1']
             runningTotal = 0;
             state = 0;
         }
-        runningTotal = runningTotal*10 + a;
+        runningTotal = runningTotal+ String(a);
         document.getElementById("text").innerText = runningTotal;
     }
 
@@ -226,14 +226,17 @@ categories: ['C4.1']
 
         //create row
         const row = document.createElement("tr");
+
         //create column1 (number)
         const column1 = document.createElement("td");
         const node1 = document.createTextNode(runningTotal.toString());
         column1.appendChild(node1);
+
         //create colum2 (notes)
         const column2 = document.createElement("td");
         const inputfeild = document.createElement("input");
         column2.appendChild(inputfeild);
+        
         //append column1 and 2 to the row
         row.appendChild(column1);
         row.appendChild(column2);
