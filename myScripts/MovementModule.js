@@ -38,9 +38,8 @@ class Movement{
         this.Vx = this.DeltaX*this.speed;
         
         //this.Vy -= his.FaAc*this.DeltaY * (1/f);//unused
-        if (this.Vy < this.VyMin)
-        {
-            this.Vy = this.VyMin
+        if (this.Vy < this.VyMin){
+            this.Vy = this.VyMin;
         };
         
         this.x = this.x + this.Vx * (1/f);
