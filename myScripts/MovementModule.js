@@ -32,7 +32,8 @@ class Movement{
         //this.y += this.Vy * (1/f); //unused
     }
     
-    handleKeydown(event){
+    ////IMPORTANT -- when setting up the event listener, it is necesary that you bind the function the class with .bind()
+    handleKeydown(event){ 
         switch(event.code){
             //case"KeyW": //unused
             //this.DeltaY =1;
