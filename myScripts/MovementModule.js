@@ -5,12 +5,28 @@ class Movement{
     VyMin = -50; //max falling speed (minimum y velocity)
     DeltaX = 0; //x direction of buttons pressed (1 up, -1 down, 0 none)
     DeltaY = 0; //y direction of buttons pressed (1 right, -1 left, 0 none)
-    speed = 20; //walking speed
 
-    constructor(Xi,Yi){
-    this.x = Xi;
-    this.y = Yi;
+    speed = 20; //default speed
+
+    up = "KeyW"; //default keybinds for controls
+    down = "KeyS";
+    right = "KeyD";
+    left = "KeyA";
+
+    constructor(Xi,Yi,spd,controls){
+        this.x = Xi;
+        this.y = Yi;
+        if (controls){ //override default keybinds
+            this.up = controls[0];
+            this.down = controls[1];
+            this.right = controls[2];
+            this.left = controls[3];
+        }
+        if (spd){ //override default speed
+            this.speed = spd;
+        }
     }
+
 
     position(){
         console.log("Position X:" + this.x + " Y:" + this.y);
@@ -35,16 +51,16 @@ class Movement{
     ////IMPORTANT -- when setting up the event listener, it is necesary that you bind the function the class with .bind()
     handleKeydown(event){ 
         switch(event.code){
-            //case"KeyW": //unused
+            //case this.up: //unused
             //this.DeltaY =1;
             //break;
-            //case"KeyS":
+            //case this.down:
             //this.DeltaY =-1;
             //break;
-            case"KeyD":
+            case this.right:
                 this.DeltaX = 1;
                 break;
-            case"KeyA":
+            case this.left:
                 this.DeltaX = -1;
                 break;
         }
@@ -52,16 +68,16 @@ class Movement{
     
     handleKeyup(event){
         switch(event.code){
-            //case"KeyW": //unused
+            //case this.up: //unused
             //this.DeltaY =0;
             //break;
-            //case"KeyS":
+            //case this.down:
             //this.DeltaY =0;
             //break;
-            case"KeyD":
+            case this.right:
             this.DeltaX = 0;
             break;
-            case"KeyA":
+            case this.left:
             this.DeltaX =0;
             break;
         }  
