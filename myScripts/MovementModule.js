@@ -48,7 +48,7 @@ class Movement{
         //this.y += this.Vy * (1/f); //unused
     }
     
-    ////IMPORTANT -- when setting up the event listener, it is necesary that you bind the function the class with .bind()
+    ////IMPORTANT -- when setting up the event listener, it is necesary that you bind the function to the class with .bind()
     handleKeydown(event){ 
         switch(event.code){
             //case this.up: //unused
