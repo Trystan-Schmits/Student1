@@ -11,8 +11,6 @@ categories: ['C4.1']
     .container{
         display: Block;
         background-color: white;
-        width: 500px;
-        height: 500px;
     }
 </style>
 
@@ -24,7 +22,7 @@ categories: ['C4.1']
 <input id="fps" type="number" onfocus="this.value=''" />
 <button id="setFps">set fps</button>
 
-<canvas id="container" class="container"></canvas>
+<canvas width="500px" height="500px" id="container" class="container"></canvas>
 
 <script type="module">
 import Movement from "/Student1/myScripts/MovementModule.js"
@@ -79,7 +77,7 @@ function draw(){
 
     ctx.fillStyle = "black";
     ctx.moveTo(0, 100);
-    ctx.lineTo(100, 100);
+    ctx.lineTo(500, 100);
     ctx.stroke();
 
     ctx.fillStyle = "blue"
