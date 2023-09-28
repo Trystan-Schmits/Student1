@@ -26,15 +26,22 @@ categories: ['C4.1']
 
 <script type="module">
 import Movement from "/Student1/myScripts/MovementModule.js"
+import Drawing from "/Student1/myScripts/MovementModule.js"
+import CreateObject from "/Student1/myScripts/MovementModule.js"
+
 
 var movement;
+var Drawer;
+var objects;
 let fps = 25;
 var animId;
 let active = false;
 
 function frame(){ //when a frame is updated
     movement.update(fps);
-    draw();
+    Drawer.update(movement.position()[0]);
+    var canvas = document.getElementById("container");
+    Drawer.draw(canvas,movement.state())
     setTimeout(function() {if(active==true){animId = requestAnimationFrame(frame)};}, 1000 / fps);
     
 }
@@ -55,7 +62,6 @@ function stop(){
 
 function reset(a){
     console.log("reset a:" + a);
-
     stop();
     
     if (a !== 1 ) {
@@ -63,27 +69,24 @@ function reset(a){
     document.removeEventListener("keyup",movement.handleKeyup.bind(movement));
     }
 
+    Drawer = new Drawing();
+    //create objects
+    // create a list of spritesheets, pos, scale, ...
+    // using that list create the layers [0,[objects]]
+    
+
+    
+
+    //create 
+
+
     movement = new Movement(0,0);
     document.addEventListener("keydown",movement.handleKeydown.bind(movement));
     document.addEventListener("keyup",movement.handleKeyup.bind(movement));
     
-    draw();
+    Drawer.draw(canvas,movement.state());
 }
 
-function draw(){
-    var canvas = document.getElementById("container");
-    var ctx = canvas.getContext("2d");
-    ctx.clearRect(0,0,500,500)
-
-    ctx.fillStyle = "black";
-    ctx.moveTo(0, 100);
-    ctx.lineTo(500, 100);
-    ctx.stroke();
-
-    ctx.fillStyle = "blue"
-    let t = movement.position();
-    ctx.fillRect(100+t[0],100-t[1], -10,-10);
-}
 
 window.onload = reset(1);
 document.getElementById("start").addEventListener("click",start);

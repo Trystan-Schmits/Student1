@@ -32,9 +32,17 @@ class Movement{
         console.log("Position X:" + this.x + " Y:" + this.y);
         return [this.x, this.y];
     }
+
+    state(){
+        return Math.abs(this.DeltaX);
+    }
+
+    overridePosition(pos){
+        this.x = pos[0]
+        this.y = pos[1]
+    }
     
     update(f){
-
         this.Vx = this.DeltaX*this.speed;
         
         //this.Vy -= his.FaAc*this.DeltaY * (1/f);//unused
