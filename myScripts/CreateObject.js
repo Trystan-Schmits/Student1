@@ -7,6 +7,7 @@ class CreateObject{
         this.frame = 0;
         this.maxFrames = maxFrames;
         this.maxState = states;
+        console.log(this.scale, this.SpriteSize)
     }
 
     ReturnPosition(){
@@ -21,10 +22,11 @@ class CreateObject{
         this.frame = (this.frame++)%this.maxFrames; //increment frame by one, loop at max
 
         var s1 = state%this.maxState;
-        var x = this.position[0]- scroll[0];
-        var y = this.position[1]- scroll[1];
+        var x = this.position[0]+ scroll[0];
+        var y = this.position[1]+ scroll[1];
         //drawing function
-        ctx.drawImage(this.image,this.frame*this.SpriteSize[0],s1*this.SpriteSize[1],this.spriteSize[0],this.spriteSize[1],x,y,this.scale[0],this.scale[1]);
+        ctx.drawImage(this.image,this.frame*this.SpriteSize[0],s1*this.SpriteSize[1],this.SpriteSize[0],this.SpriteSize[1],x,y,this.scale[0],-1*this.scale[1]);
+        ctx.drawImage(this.image,10,10)
     }
 }
 export default CreateObject;

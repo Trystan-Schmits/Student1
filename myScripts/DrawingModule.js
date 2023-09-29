@@ -5,14 +5,14 @@ class Drawing{
         this.layers = layers; // dictionary with [(layer=[{objectData,position,scale}])] lower numbers are further back; 0 is min
         this.CanvasX = canvas.offsetHeight;
         this.CanvasY = canvas.offsetWidth;
-        this.floor = floorHeight;
+        this.floor = this.CanvasY-floorHeight;
         this.character = character;
     }
 
     #WhatToDraw(){
         var objects = [];
-        for (i=0;i<this.layers.length;i++){
-            for(i2=0;i2<this.layers[i].objects.length;i2++){
+        for (let i=0;i<this.layers.length;i++){
+            for(let i2=0;i2<this.layers[i].objects.length;i2++){
                 if ((this.layers[i][i2].ReturnPosition()[0] + this.CanvasX > this.scroll)&&(this.layers[i][i2].ReturnPosition()[0] - this.CanvasX < this.scroll)){
                     objects.push(this.layers[i][i2])
                 }
@@ -32,15 +32,15 @@ class Drawing{
 
         var objects = this.#WhatToDraw();
         if (objects.length>0){
-            for (i=0;i<objects.length;i++){
+            for (let i=0;i<objects.length;i++){
                 objects[i].draw(ctx,[this.scroll,this.floor*-1],state)
             }
         }
 
         ctx.fillSytle = "black";
-        ctx.fillRect(0,this.floor,this.CanvasX,canvasY-this.floor); // floor
+        ctx.fillRect(0,this.floor,this.CanvasX,this.floor); // floor
 
-        this.character.draw(ctx,[this.CanvasX,canvasY-this.floor],state);
+        this.character.draw(ctx,[this.CanvasX/2,this.floor],state);
     }
 }
 
