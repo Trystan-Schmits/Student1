@@ -25,25 +25,51 @@ categories: ['C4.1']
 <canvas width="500px" height="500px" id="container" class="container"></canvas>
 
 <script type="module">
-import Movement from "/Student1/myScripts/MovementModule.js"
-import Drawing from "/Student1/myScripts/DrawingModule.js"
-import Object from "/Student1/myScripts/CreateObject.js"
+//importModules
+import Movement from "/Student1/myScripts/MovementModule.js" //standAlone
 
+import Drawing from "/Student1/myScripts/DrawingModule.js"//must be used with object
+import Object from "/Student1/myScripts/CreateObject.js" //must be used with drawing
 
+//to be assigned
 var movement;
 var Drawer;
-var objects;
+
+//base variables
 let fps = 25;
 var animId;
 let active = false;
 var canvas = document.getElementById("container");
+var state = 0;
+let CurrentFrame = 0;
+
+//objects
+var character = new Image(); //character
+character.src = "/Student1/images/Game/character.png";
+document.getElementById("setFps").insertAdjacentElement("afterend", character);
+var charObject = new Object(character,[22,54],[20,30],[0,0],2,1);
+
+var box = new Image(); //object1
+box.src = "/Student1/images/Game/box.jpeg";
+var boxObject = new Object(box,[255,255],[100,50],[150,200],1,1);
+
+var objects = [[boxObject]];
+
 
 function frame(){ //when a frame is updated
+    CurrentFrame += 1;
     movement.update(fps);
     Drawer.update(movement.position()[0]);
     Drawer.draw(canvas,movement.state())
     setTimeout(function() {if(active==true){animId = requestAnimationFrame(frame)};}, 1000 / fps);
-    
+    if (movement.state()==1||movement.state()==-1){
+        if (CurrentFrame%12==0){
+            charObject.UpdateFrame(0);
+        }
+        else if(CurrentFrame%12==6){
+            charObject.UpdateFrame(1);
+        }
+    }
 }
 
 function start(){
@@ -69,18 +95,7 @@ function reset(a){
     document.removeEventListener("keyup",movement.handleKeyup.bind(movement));
     }
 
-    var character = new Image();
-    character.src = "/Student1/images/Game/character.png"
-    document.getElementById("setFps").insertAdjacentElement("afterend", character);
-    var charObject = new Object(character,[22,27],[10,20],[0,0],2,0)
-
-    Drawer = new Drawing([],charObject,canvas,100);
-    //create objects
-    // create a list of spritesheets, pos, scale, ...
-    // using that list create the layers [0,[objects]]
-    
-    //create 
-
+    Drawer = new Drawing(objects,charObject,canvas,100);
 
     movement = new Movement(0,0);
     document.addEventListener("keydown",movement.handleKeydown.bind(movement));

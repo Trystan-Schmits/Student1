@@ -18,15 +18,22 @@ class CreateObject{
         return this.scale;
     }
 
-    draw(ctx,scroll,state){
-        this.frame = (this.frame++)%this.maxFrames; //increment frame by one, loop at max
+    OverridePosition(pos){
+        this.position = pos;
+    }
 
+    UpdateFrame(newFrame){
+        console.log("updated to :"+ newFrame);
+        this.frame = newFrame%this.maxFrames;
+    }
+
+    draw(ctx,scroll,state){
         var s1 = state%this.maxState;
-        var x = this.position[0]+ scroll[0];
-        var y = this.position[1]+ scroll[1];
+        var x = this.position[0]-scroll[0];
+        var y = scroll[1]-this.position[1];
         //drawing function
         ctx.drawImage(this.image,this.frame*this.SpriteSize[0],s1*this.SpriteSize[1],this.SpriteSize[0],this.SpriteSize[1],x,y,this.scale[0],-1*this.scale[1]);
-        ctx.drawImage(this.image,10,10)
+        console.log(x,y,scroll[1])
     }
 }
 export default CreateObject;
