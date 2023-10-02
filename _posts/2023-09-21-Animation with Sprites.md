@@ -50,19 +50,23 @@ character.src = "/Student1/images/Game/CharacterSpriteSheet.png";
 //document.getElementById("setFps").insertAdjacentElement("afterend", character);
 var charObject = new Object(character,[31,54],[40,60],[0,0],2,4);
 
-var background = new Image(); //object1
+var background = new Image(); //Background0
 background.src = "/Student1/images/Game/background.png";
 var backgroundObject = new Object(background,[2048,1270],[640,400],[0,0],1,1);
+
+var background1 = new Image(); //Background1
+background1.src = "/Student1/images/Game/background1.png";
+var backgroundObject1 = new Object(background1,[500,150],[640,400],[640,0],1,1);
 
 var box = new Image(); //object1
 box.src = "/Student1/images/Game/box.jpeg";
 var boxObject = new Object(box,[255,220],[100,100],[150,0],1,1);
 
-var slime = new Image();
+var slime = new Image();//slime
 slime.src = "/Student1/images/Game/slime.jpeg"
 var slimeObject = new Object(slime,[225,200],[20,20],[150,0],1,1);
 
-var objects = [[backgroundObject],[boxObject],[slimeObject]];
+var objects = [[backgroundObject,backgroundObject1],[boxObject],[slimeObject]];
 
 
 function frame(){ //when a frame is updated
