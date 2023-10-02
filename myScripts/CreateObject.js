@@ -7,7 +7,6 @@ class CreateObject{
         this.frame = 0;
         this.maxFrames = maxFrames;
         this.maxState = states;
-        console.log(this.scale, this.SpriteSize)
     }
 
     ReturnPosition(){
@@ -24,7 +23,6 @@ class CreateObject{
 
     UpdateFrame(newFrame){
         if (!newFrame){newFrame = this.frame+1};
-        console.log("updated to :"+ newFrame);
         this.frame = newFrame%this.maxFrames;
     }
 
@@ -34,7 +32,6 @@ class CreateObject{
         var y = scroll[1]-this.position[1];
         //drawing function
         ctx.drawImage(this.image,this.frame*this.SpriteSize[0],s1*this.SpriteSize[1],this.SpriteSize[0],this.SpriteSize[1],x,y,this.scale[0],-1*this.scale[1]);
-        console.log(x,y,scroll[1])
     }
 }
 export default CreateObject;
