@@ -34,7 +34,7 @@ class Movement{
     }
 
     state(){
-        return Math.abs(this.DeltaX);
+        return this.DeltaX;
     }
 
     overridePosition(pos){

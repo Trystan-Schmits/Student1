@@ -41,13 +41,14 @@ var animId;
 let active = false;
 var canvas = document.getElementById("container");
 var state = 0;
+var lastDirection = 1;
 let CurrentFrame = 0;
 
 //objects
 var character = new Image(); //character
-character.src = "/Student1/images/Game/character.png";
+character.src = "/Student1/images/Game/CharacterSpriteSheet.png";
 document.getElementById("setFps").insertAdjacentElement("afterend", character);
-var charObject = new Object(character,[22,54],[20,30],[0,0],2,1);
+var charObject = new Object(character,[31,54],[40,60],[0,0],2,4);
 
 var box = new Image(); //object1
 box.src = "/Student1/images/Game/box.jpeg";
@@ -60,16 +61,30 @@ function frame(){ //when a frame is updated
     CurrentFrame += 1;
     movement.update(fps);
     Drawer.update(movement.position()[0]);
-    Drawer.draw(canvas,movement.state())
-    setTimeout(function() {if(active==true){animId = requestAnimationFrame(frame)};}, 1000 / fps);
-    if (movement.state()==1||movement.state()==-1){
-        if (CurrentFrame%12==0){
-            charObject.UpdateFrame(0);
-        }
-        else if(CurrentFrame%12==6){
-            charObject.UpdateFrame(1);
-        }
+    Drawer.draw(canvas,state)
+
+    if (CurrentFrame % Math.round(fps/2)== 0){charObject.UpdateFrame()};
+    switch(movement.state()){
+        case 0: 
+            if (lastDirection == 1){
+                state = 0;
+            }
+            else {
+                state = 2;
+            }
+            break;
+        case 1:
+                state = 1;
+                lastDirection = 1;
+            break;
+        case -1:
+                state = 3;
+                lastDirection = -1;
+            break;
     }
+
+    setTimeout(function() {if(active==true){animId = requestAnimationFrame(frame)};}, 1000 / fps);
+    
 }
 
 function start(){

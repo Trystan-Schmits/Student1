@@ -23,6 +23,7 @@ class CreateObject{
     }
 
     UpdateFrame(newFrame){
+        if (!newFrame){newFrame = this.frame+1};
         console.log("updated to :"+ newFrame);
         this.frame = newFrame%this.maxFrames;
     }
