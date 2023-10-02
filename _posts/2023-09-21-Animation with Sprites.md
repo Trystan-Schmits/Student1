@@ -80,9 +80,7 @@ function frame(){ //when a frame is updated
     }
 
     //character Animation
-    if (CurrentFrame % Math.round(fps/2)== 0){
-        charObject.UpdateFrame();
-    };
+    if (CurrentFrame % Math.round(fps/2)== 0){charObject.UpdateFrame();};
     switch(movement.state()){
         case 0: 
             if (lastDirection == 1){
