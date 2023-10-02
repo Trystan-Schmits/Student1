@@ -52,18 +52,33 @@ var charObject = new Object(character,[31,54],[40,60],[0,0],2,4);
 
 var box = new Image(); //object1
 box.src = "/Student1/images/Game/box.jpeg";
-var boxObject = new Object(box,[255,255],[100,50],[150,200],1,1);
+var boxObject = new Object(box,[255,220],[100,100],[150,0],1,1);
 
-var objects = [[boxObject]];
+var slime = new Image();
+slime.src = "/Student1/images/Game/slime.jpeg"
+var slimeObject = new Object(slime,[225,200],[20,20],[150,0],1,1);
+
+var objects = [[boxObject],[slimeObject]];
 
 
 function frame(){ //when a frame is updated
     CurrentFrame += 1;
+
     movement.update(fps);
     Drawer.update(movement.position()[0]);
-    Drawer.draw(canvas,state)
 
-    if (CurrentFrame % Math.round(fps/2)== 0){charObject.UpdateFrame()};
+    //slime movement
+    if (slimeObject.ReturnPosition()[0] < (Drawer.ReturnScroll()+canvas.offsetWidth/2)){
+        slimeObject.OverridePosition([slimeObject.ReturnPosition()[0]+10/fps,0]);
+    }
+    else{
+        slimeObject.OverridePosition([slimeObject.ReturnPosition()[0]-10/fps,0]);
+    }
+
+    //character Animation
+    if (CurrentFrame % Math.round(fps/2)== 0){
+        charObject.UpdateFrame();
+    };
     switch(movement.state()){
         case 0: 
             if (lastDirection == 1){
@@ -83,8 +98,9 @@ function frame(){ //when a frame is updated
             break;
     }
 
+
+    Drawer.draw(canvas,state); //draw frame
     setTimeout(function() {if(active==true){animId = requestAnimationFrame(frame)};}, 1000 / fps);
-    
 }
 
 function start(){

@@ -27,6 +27,10 @@ class Drawing{
         this.scroll = x;
     }
 
+    ReturnScroll(){
+        return this.scroll;
+    }
+
     draw(canvas,state,direction){
         var ctx = canvas.getContext("2d");
         ctx.clearRect(0,0,this.CanvasX,this.CanvasY);
