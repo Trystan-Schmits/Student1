@@ -51,23 +51,104 @@ character.src = "/Student1/images/Game/CharacterSpriteSheet.png";
 var charObject = new Object(character,[31,54],[40,60],[0,0],2,4);
 
 var background = new Image(); //Background0
-background.src = "/Student1/images/Game/background.png";
-var backgroundObject = new Object(background,[2048,1270],[640,400],[0,0],1,1);
+background.src = "/Student1/images/Game/room1.png";
+var backgroundObject = new Object(background,[438,119],[438,119],[0,0],1,1);
 
-var background1 = new Image(); //Background1
-background1.src = "/Student1/images/Game/background1.png";
-var backgroundObject1 = new Object(background1,[500,150],[640,400],[640,0],1,1);
-
-var box = new Image(); //object1
-box.src = "/Student1/images/Game/box.jpeg";
-var boxObject = new Object(box,[255,220],[100,100],[150,0],1,1);
+var dresser = new Image(); //object1
+dresser.src = "/Student1/images/Game/drawer1.png";
+var desserObject = new Object(dresser,[28,28],[28,28],[7,4],1,1);
 
 var slime = new Image();//slime
 slime.src = "/Student1/images/Game/slime.jpeg"
 var slimeObject = new Object(slime,[225,200],[20,20],[150,0],1,1);
 
-var objects = [[backgroundObject,backgroundObject1],[boxObject],[slimeObject]];
+var objects = [[backgroundObject],[desserObject],[slimeObject]];
 
+function checkForOverlap(object1,object2){
+    var pos1 = object1.ReturnPosition().slice();
+    var scale1 = object1.ReturnScale().slice();   
+    var xRange1 = [pos1[0],pos1[0]+scale1[0]];
+    var yRange1 = [pos1[1],pos1[1]+scale1[1]];
+
+    var pos2 = object2.ReturnPosition().slice();
+    var scale2 = object2.ReturnScale().slice();   
+    var xRange2 = [pos2[0],pos2[0]+scale2[0]];
+    var yRange2 = [pos2[1],pos2[1]+scale2[1]];
+    
+    if (xRange1[0]>=xRange2[0]){
+        if (xRange1[0]<=xRange2[1]){
+            if (yRange1[0]>=yRange2[0]){
+                if (yRange1[0]<=yRange2[1]){
+                    return true;
+                }
+            }
+            if (yRange1[1]>=yRange2[0]){
+                if (yRange1[1]<=yRange2[1]){
+                    return true;
+                }
+            }
+        }
+    }
+    if (xRange1[1]>=xRange2[0]){
+        if (xRange1[1]<=xRange2[1]){
+            if (yRange1[0]>=yRange2[0]){
+                if (yRange1[0]<=yRange2[1]){
+                    return true;
+                }
+            }
+            if (yRange1[1]>=yRange2[0]){
+                if (yRange1[1]<=yRange2[1]){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+function checkForCharacterOverlap(object1){
+    var scroll = Drawer.ReturnScroll();
+
+    var pos1 = charObject.ReturnPosition().slice();
+    pos1[0] = scroll + canvas.offsetWidth/2;
+    var scale1 = charObject.ReturnScale().slice();
+    var xRange1 = [pos1[0],pos1[0]+scale1[0]];
+    var yRange1 = [pos1[1],pos1[1]+scale1[1]];
+
+    var pos2 = object1.ReturnPosition().slice();
+    var scale2 = object1.ReturnScale().slice();   
+    var xRange2 = [pos2[0],pos2[0]+scale2[0]];
+    var yRange2 = [pos2[1],pos2[1]+scale2[1]];
+
+    if (xRange1[0]>=xRange2[0]){
+        if (xRange1[0]<=xRange2[1]){
+            if (yRange1[0]>=yRange2[0]){
+                if (yRange1[0]<=yRange2[1]){
+                    return true;
+                }
+            }
+            if (yRange1[1]>=yRange2[0]){
+                if (yRange1[1]<=yRange2[1]){
+                    return true;
+                }
+            }
+        }
+    }
+    if (xRange1[1]>=xRange2[0]){
+        if (xRange1[1]<=xRange2[1]){
+            if (yRange1[0]>=yRange2[0]){
+                if (yRange1[0]<=yRange2[1]){
+                    return true;
+                }
+            }
+            if (yRange1[1]>=yRange2[0]){
+                if (yRange1[1]<=yRange2[1]){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
 
 function frame(){ //when a frame is updated
     CurrentFrame += 1;
